@@ -101,10 +101,10 @@ async function run () {
   const sections = []
   const svgs = []
   for (const fixture of fixtures) {
+    const npmciRes = average(await benchmark('npmci', fixture.name, {limitRuns: LIMIT_RUNS, pmBin: 'npm'}))
     const npmRes = average(await benchmark('npm', fixture.name, {limitRuns: LIMIT_RUNS}))
     const yarnRes = average(await benchmark('yarn', fixture.name, {limitRuns: LIMIT_RUNS}))
     const pnpmRes = average(await benchmark('pnpm', fixture.name, {limitRuns: LIMIT_RUNS}))
-    const npmciRes = average(await benchmark('npmci', fixture.name, {limitRuns: LIMIT_RUNS}))
     const resArray = toArray(pms, {
       'npm': npmRes,
       'yarn': yarnRes,
@@ -123,7 +123,7 @@ async function run () {
       | install | ✔    |          |             | ${prettyMs(npmRes.withWarmCache)} | ${prettyMs(yarnRes.withWarmCache)} | ${prettyMs(pnpmRes.withWarmCache)} | N/A |
       | install |      | ✔        |             | ${prettyMs(npmRes.withLockfile)} | ${prettyMs(yarnRes.withLockfile)} | ${prettyMs(pnpmRes.withLockfile)} | ${prettyMs(npmciRes.withLockfile)} |
       | install | ✔    |          | ✔           | ${prettyMs(npmRes.withWarmCacheAndModules)} | ${prettyMs(yarnRes.withWarmCacheAndModules)} | ${prettyMs(pnpmRes.withWarmCacheAndModules)} | N/A |
-      | install |      | ✔        | ✔           | ${prettyMs(npmRes.withWarmModulesAndLockfile)} | ${prettyMs(yarnRes.withWarmModulesAndLockfile)} | ${prettyMs(pnpmRes.withWarmModulesAndLockfile)} | ${prettyMs(withWarmModulesAndLockfile)} |
+      | install |      | ✔        | ✔           | ${prettyMs(npmRes.withWarmModulesAndLockfile)} | ${prettyMs(yarnRes.withWarmModulesAndLockfile)} | ${prettyMs(pnpmRes.withWarmModulesAndLockfile)} | ${prettyMs(npmciRes.withWarmModulesAndLockfile)} |
       | install |      |          | ✔           | ${prettyMs(npmRes.withWarmModules)} | ${prettyMs(yarnRes.withWarmModules)} | ${prettyMs(pnpmRes.withWarmModules)} | N/A
 
       ![Graph of the ${fixture.name} results](./results/imgs/${fixture.name}.svg)
