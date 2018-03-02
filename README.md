@@ -57,16 +57,16 @@ The app's `package.json` [here](./fixtures/angular-quickstart/package.json)
 
 The app's `package.json` [here](./fixtures/medium-size-app/package.json)
 
-| action  | cache | lockfile | node_modules| npm i | Yarn | pnpm | npm ci
-| ---     | ---   | ---      | ---         | --- | --- | --- | --- |
-| install |       |          |             | 23s | 22.1s | 43.8s | N/A |
-| install | ✔    | ✔        | ✔           | 6.4s | 1s | 1.4s | 11.6s |
-| install | ✔    | ✔        |             | 12.3s | 8.6s | 9.9s | 6.5s |
-| install | ✔    |          |             | 20.9s | 11.7s | 16s | N/A |
-| install |      | ✔        |             | 13.9s | 19.4s | 34.3s | 8.2s |
-| install | ✔    |          | ✔           | 6.1s | 7.1s | 10.6s | N/A |
-| install |      | ✔        | ✔           | 6.4s | 1s | 1.4s | 14.5s |
-| install |      |          | ✔           | 5.9s | 17.3s | 39.5s | N/A
+| action  | cache | lockfile | node_modules| tl;dr | npm i | Yarn | pnpm | npm ci
+| ---     | ---   | ---      | ---         | --- | --- | --- | --- | --- |
+| install |      | ✔        |             | clean install. Usually CI (default Travis config) | 13.9s | 19.4s | 34.3s | **_8.2s_** |
+| install | ✔    | ✔        |             | refreshing node_modules/ locally, or CI configured to use global cache (not default on Travis) | 12.3s | 8.6s | 9.9s | **_6.5s_** |
+| install |      | ✔        | ✔           | install after git pull, with cold cache | 6.4s | **_1s_** | 1.4s | 14.5s |
+| install | ✔    | ✔        | ✔           | local dev install after git pull. On CI, if both node_modules and the global cache are configured (rare) | 6.4s | **_1s_** | 1.4s | 11.6s |
+| install |       |          |             | upgrading a project with no lockfile. One-time operation. | 23s | **_22.1s_** | 43.8s | N/A |
+| install |      |          | ✔           | upgrading a project with no lockfile. One-time operation. | **_5.9s_** | 17.3s | 39.5s | N/A
+| install | ✔    |          | ✔           | upgrading a project with no lockfile. One-time operation. | **_6.1s_** | 7.1s | 10.6s | N/A |
+| install | ✔    |          |             | upgrading a project with no lockfile. One-time operation | 20.9s | **_11.7s_** | 16s | N/A |
 
 ![Graph of the medium-size-app results](./results/imgs/medium-size-app.svg)
 
