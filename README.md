@@ -6,16 +6,16 @@ This benchmark compares the performance of [npm](https://github.com/npm/npm), [n
 
 The app's `package.json` [here](./fixtures/react-app/package.json)
 
-| action  | cache | lockfile | node_modules| npm i | Yarn | pnpm | npm ci
+| action  | cache | lockfile | node_modules| npm i | npm ci | Yarn | pnpm |
 | ---     | ---   | ---      | ---         | --- | --- | --- | --- |
-| install |       |          |             | 22.8s | *21.4s* | 45.6s | N/A |
-| install | ✔    | ✔        | ✔           | 6.7s | **1s** | 1.3s | 11.3s |
-| install | ✔    | ✔        |             | 12.2s | 8.2s | 9.5s | *6.9s* |
-| install | ✔    |          |             | 21.1s | **10.8s** | 16.3s | N/A |
-| install |      | ✔        |             | 14.4s | 17.6s | 33.9s | **8.6s** |
-| install | ✔    |          | ✔           | *6.7s* | 7.6s | 11s | N/A |
-| install |      | ✔        | ✔           | 6.8s | *1.1s* | 1.2s | 13.5s |
-| install |      |          | ✔           | **6.4s** | 16.6s | 37.2s | N/A
+| install |       |          |             | 22.8s | N/A | *21.4s* | 45.6s |
+| install | ✔    | ✔        | ✔           | 6.7s | 11.3s | **1s** | 1.3s |
+| install | ✔    | ✔        |             | 12.2s | *6.9s* | 8.2s | 9.5s |
+| install | ✔    |          |             | 21.1s | N/A | **10.8s** | 16.3s |
+| install |      | ✔        |             | 14.4s | **8.6s** | 17.6s | 33.9s |
+| install | ✔    |          | ✔           | *6.7s* | N/A | 7.6s | 11s |
+| install |      | ✔        | ✔           | 6.8s | 13.5s | *1.1s* | 1.2s |
+| install |      |          | ✔           | **6.4s** | N/A | 16.6s | 37.2s |
 
 ![Graph of the react-app results](./results/imgs/react-app.svg)
 
